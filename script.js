@@ -1,26 +1,57 @@
 function definirPrioridade(){
+    let problema = parseInt(document.getElementById("problema").value)
+    let prioridade = document.getElementById("prioridade")
 
-let problema = document.getElementById("problema").value
-let prioridade = document.getElementById("prioridade")
-
-if(problema == 3){
-prioridade.value = "Grave"
+    if(problema === 3){
+        prioridade.value = "Grave"
+    } else if(problema === 2){
+        prioridade.value = "Média"
+    } else {
+        prioridade.value = "Leve"
+    }
 }
 
-else if(problema == 2){
-prioridade.value = "Média"
+function gerarChamado(event){
+    event.preventDefault()
+
+    let numero = Math.floor(Math.random()*9000)+1000
+
+    let chamado = {
+        numero: numero,
+        cliente: document.getElementById("cliente").value,
+        tipo: document.getElementById("tipo").value,
+        prioridade: document.getElementById("prioridade").value,
+        status: "Aberto"
+    }
+
+    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
+    chamados.push(chamado)
+    localStorage.setItem("chamados", JSON.stringify(chamados))
+
+    document.getElementById("resultado").innerText = "Chamado Nº " + numero + " criado com sucesso!"
+
+    document.querySelector("form").reset()
+    document.getElementById("prioridade").value = ""
 }
 
-else{
-prioridade.value = "Leve"
+function carregarChamados(){
+    let tabela = document.getElementById("tabela")
+    if(!tabela) return
+
+    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
+
+    chamados.forEach(c => {
+        let linha = `
+        <tr>
+            <td>${c.numero}</td>
+            <td>${c.cliente}</td>
+            <td>${c.tipo}</td>
+            <td>${c.prioridade}</td>
+            <td>${c.status}</td>
+        </tr>`
+
+        tabela.innerHTML += linha
+    })
 }
 
-}
-
-function gerarChamado(){
-
-let numero = Math.floor(Math.random()*9000)+1000
-
-alert("Chamado aberto com sucesso! Número: "+numero)
-
-}
+window.onload = carregarChamados

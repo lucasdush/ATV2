@@ -1,41 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Fila de Atendimento</title>
+<title>Fila</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 </head>
-
 <body>
 
-<h2>Fila de Chamados</h2>
+<header><h1>Fila de Chamados</h1></header>
 
-<table border="1">
+<nav>
+<a href="index.html">Início</a>
+<a href="cliente.html">Abrir Chamado</a>
+<a href="fila.html">Fila</a>
+<a href="lista.html">Lista</a>
+</nav>
 
+<div class="container">
+
+<table border="1" width="100%">
 <tr>
 <th>Número</th>
 <th>Cliente</th>
 <th>Tipo</th>
+<th>Prioridade</th>
 <th>Status</th>
 </tr>
-
-<tr>
-<td>001</td>
-<td>Empresa Alpha</td>
-<td>Suporte</td>
-<td>Aberto</td>
-</tr>
-
-<tr>
-<td>002</td>
-<td>Empresa Beta</td>
-<td>Infraestrutura</td>
-<td>Aguardando</td>
-</tr>
-
+<tbody id="tabela"></tbody>
 </table>
 
-<br>
-<a href="index.html">Voltar</a>
+</div>
 
 </body>
 </html>

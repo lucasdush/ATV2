@@ -1,64 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Lista de Chamados</title>
+<title>Lista</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 </head>
-
 <body>
 
-<h2>Pesquisa de Chamados</h2>
+<header><h1>Lista de Chamados</h1></header>
 
-<form>
+<nav>
+<a href="index.html">Início</a>
+<a href="cliente.html">Abrir Chamado</a>
+<a href="fila.html">Fila</a>
+<a href="lista.html">Lista</a>
+</nav>
 
-<label>Filtrar por Status:</label>
+<div class="container">
 
-<select>
-<option>Todos</option>
-<option>Aberto</option>
-<option>Fechado</option>
-<option>Cancelado</option>
-</select>
-
-<label>Data:</label>
-<input type="date">
-
-<button>Pesquisar</button>
-
-</form>
-
-<br>
-
-<table border="1">
-
+<table border="1" width="100%">
 <tr>
 <th>Número</th>
 <th>Cliente</th>
-<th>Atendente</th>
+<th>Tipo</th>
+<th>Prioridade</th>
 <th>Status</th>
-<th>Data</th>
 </tr>
-
-<tr>
-<td>001</td>
-<td>Empresa Alpha</td>
-<td>João</td>
-<td>Fechado</td>
-<td>05/03/2026</td>
-</tr>
-
-<tr>
-<td>002</td>
-<td>Empresa Beta</td>
-<td>Maria</td>
-<td>Aberto</td>
-<td>06/03/2026</td>
-</tr>
-
+<tbody id="tabela"></tbody>
 </table>
 
-<br>
-<a href="index.html">Voltar</a>
+</div>
 
 </body>
 </html>
