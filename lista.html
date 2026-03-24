@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Lista</title>
+<title>Encerrados</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 </head>
 <body>
 
-<header><h1>Lista de Chamados</h1></header>
+<header><h1>Chamados Encerrados</h1></header>
 
 <nav>
 <a href="index.html">Início</a>
 <a href="cliente.html">Abrir Chamado</a>
 <a href="fila.html">Fila</a>
-<a href="lista.html">Lista</a>
+<a href="lista.html">Encerrados</a>
 </nav>
 
 <div class="container">
 
-<table border="1" width="100%">
+<table>
 <tr>
 <th>Número</th>
 <th>Cliente</th>
@@ -27,10 +27,40 @@
 <th>Prioridade</th>
 <th>Status</th>
 </tr>
+
 <tbody id="tabela"></tbody>
+
 </table>
 
 </div>
+
+<script>
+function carregarEncerrados(){
+    let tabela = document.getElementById("tabela")
+    tabela.innerHTML = ""
+
+    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
+
+    // 🟢 SOMENTE FINALIZADOS
+    chamados
+    .filter(c => c.status === "Finalizado")
+    .forEach(c => {
+
+        let linha = `
+        <tr>
+            <td>${c.numero}</td>
+            <td>${c.cliente}</td>
+            <td>${c.tipo}</td>
+            <td>${c.prioridade}</td>
+            <td>${c.status}</td>
+        </tr>`
+
+        tabela.innerHTML += linha
+    })
+}
+
+window.onload = carregarEncerrados
+</script>
 
 </body>
 </html>

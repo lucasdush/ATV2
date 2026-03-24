@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Fila</title>
@@ -8,29 +8,73 @@
 </head>
 <body>
 
-<header><h1>Fila de Chamados</h1></header>
+<header><h1>Fila de Chamados (Em Aberto)</h1></header>
 
 <nav>
 <a href="index.html">Início</a>
 <a href="cliente.html">Abrir Chamado</a>
 <a href="fila.html">Fila</a>
-<a href="lista.html">Lista</a>
+<a href="lista.html">Encerrados</a>
 </nav>
 
 <div class="container">
 
-<table border="1" width="100%">
+<table>
 <tr>
 <th>Número</th>
 <th>Cliente</th>
 <th>Tipo</th>
 <th>Prioridade</th>
 <th>Status</th>
+<th>Ação</th>
 </tr>
+
 <tbody id="tabela"></tbody>
+
 </table>
 
 </div>
+
+<script>
+function carregarChamados(){
+    let tabela = document.getElementById("tabela")
+    tabela.innerHTML = ""
+
+    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
+
+    // 🔵 SOMENTE ABERTOS
+    chamados
+    .filter(c => c.status === "Aberto")
+    .forEach((c, index) => {
+
+        let linha = `
+        <tr>
+            <td>${c.numero}</td>
+            <td>${c.cliente}</td>
+            <td>${c.tipo}</td>
+            <td>${c.prioridade}</td>
+            <td>${c.status}</td>
+            <td>
+                <button onclick="finalizar(${index})">Finalizar</button>
+            </td>
+        </tr>`
+
+        tabela.innerHTML += linha
+    })
+}
+
+function finalizar(index){
+    let chamados = JSON.parse(localStorage.getItem("chamados"))
+
+    chamados[index].status = "Finalizado"
+
+    localStorage.setItem("chamados", JSON.stringify(chamados))
+
+    carregarChamados()
+}
+
+window.onload = carregarChamados
+</script>
 
 </body>
 </html>

@@ -38,9 +38,15 @@ function carregarChamados(){
     let tabela = document.getElementById("tabela")
     if(!tabela) return
 
+    tabela.innerHTML = ""
+
     let chamados = JSON.parse(localStorage.getItem("chamados")) || []
 
-    chamados.forEach(c => {
+    //   FINALIZADOS
+    chamados
+    .filter(c => c.status === "Finalizado")
+    .forEach(c => {
+
         let linha = `
         <tr>
             <td>${c.numero}</td>
