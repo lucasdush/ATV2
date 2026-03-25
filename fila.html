@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Fila</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./css/style.css">
 <script src="script.js"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@ function carregarChamados(){
 
     let chamados = JSON.parse(localStorage.getItem("chamados")) || []
 
-    // 🔵 SOMENTE ABERTOS
+  
     chamados
     .filter(c => c.status === "Aberto")
     .forEach((c, index) => {
