@@ -21,10 +21,10 @@
 
 <table>
 <tr>
-<th>Número</th>
+<th>ID</th>
 <th>Cliente</th>
-<th>Tipo</th>
-<th>Prioridade</th>
+<th>Título</th>
+<th>Descrição</th>
 <th>Status</th>
 </tr>
 
@@ -35,30 +35,6 @@
 </div>
 
 <script>
-function carregarEncerrados(){
-    let tabela = document.getElementById("tabela")
-    tabela.innerHTML = ""
-
-    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
-
-    // 🟢 SOMENTE FINALIZADOS
-    chamados
-    .filter(c => c.status === "Finalizado")
-    .forEach(c => {
-
-        let linha = `
-        <tr>
-            <td>${c.numero}</td>
-            <td>${c.cliente}</td>
-            <td>${c.tipo}</td>
-            <td>${c.prioridade}</td>
-            <td>${c.status}</td>
-        </tr>`
-
-        tabela.innerHTML += linha
-    })
-}
-
 window.onload = carregarEncerrados
 </script>
 

@@ -21,10 +21,10 @@
 
 <table>
 <tr>
-<th>Número</th>
+<th>ID</th>
 <th>Cliente</th>
-<th>Tipo</th>
-<th>Prioridade</th>
+<th>Título</th>
+<th>Descrição</th>
 <th>Status</th>
 <th>Ação</th>
 </tr>
@@ -36,43 +36,6 @@
 </div>
 
 <script>
-function carregarChamados(){
-    let tabela = document.getElementById("tabela")
-    tabela.innerHTML = ""
-
-    let chamados = JSON.parse(localStorage.getItem("chamados")) || []
-
-  
-    chamados
-    .filter(c => c.status === "Aberto")
-    .forEach((c, index) => {
-
-        let linha = `
-        <tr>
-            <td>${c.numero}</td>
-            <td>${c.cliente}</td>
-            <td>${c.tipo}</td>
-            <td>${c.prioridade}</td>
-            <td>${c.status}</td>
-            <td>
-                <button onclick="finalizar(${index})">Finalizar</button>
-            </td>
-        </tr>`
-
-        tabela.innerHTML += linha
-    })
-}
-
-function finalizar(index){
-    let chamados = JSON.parse(localStorage.getItem("chamados"))
-
-    chamados[index].status = "Finalizado"
-
-    localStorage.setItem("chamados", JSON.stringify(chamados))
-
-    carregarChamados()
-}
-
 window.onload = carregarChamados
 </script>
 

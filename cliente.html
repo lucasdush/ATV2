@@ -19,12 +19,18 @@
 
 <div class="container">
 
-<form>
+<form onsubmit="gerarChamado(event)">
 
 <label>Cliente</label>
 <input type="text" id="cliente" required>
 
-<label>Tipo</label>
+<label>E-mail</label>
+<input type="email" id="email" required>
+
+<label>Telefone</label>
+<input type="text" id="telefone">
+
+<label>Tipo (Título)</label>
 <select id="tipo">
 <option>Suporte</option>
 <option>Infraestrutura</option>
@@ -40,7 +46,10 @@
 <label>Prioridade</label>
 <input type="text" id="prioridade" readonly>
 
-<button onclick="gerarChamado(event)">Abrir Chamado</button>
+<label>Descrição</label>
+<textarea id="descricao" required></textarea>
+
+<button type="submit">Abrir Chamado</button>
 
 </form>
 
